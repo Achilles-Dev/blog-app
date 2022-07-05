@@ -9,7 +9,6 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.integer :likes_counter
       t.date :created_at
       t.date :updated_at
-
       t.timestamps
     end
   end
