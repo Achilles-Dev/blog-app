@@ -3,8 +3,9 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  def user_posts_counter
+  def counter_updater
     user.post_counter = user.posts.count
+    User.find(user.id).update(post_counter: user.posts.count)
   end
 
   def last_five_comments
