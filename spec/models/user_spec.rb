@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.new(name: 'Solo', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'FullStack developer from Ghana.') }
+  subject { User.create!(name: 'Solo', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'FullStack developer from Ghana.', post_counter: 0) }
 
   before { subject.save }
 
@@ -26,7 +26,8 @@ RSpec.describe User, type: :model do
   end
 
   it 'should return 1 user posts' do
-    subject.posts = [Post.new(title: 'Solo', text: 'This is my first post')]
+    post1 = Post.new(title: 'Solo', text: 'This is my first post')
+    subject.posts.push(post1)
     expected_value = 1
     expect(subject.last_three_posts.length).to eq(expected_value)
   end
