@@ -6,14 +6,14 @@
     <p>Number of posts: <%= @user.post_counter%></p>
   </div>
 </div>
-<% @user.last_three_posts.each do |post| %>
+<% @user_posts.each do |post| %>
   <div class='post-info'>
     <h2><%= post.title%> </h2>
     <h3><%= post.text%></h3>
     <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
     <div>
       <% post.last_five_comments.each do |comment| %>
-        <h3><%= User.find(comment.user_id).name%>: <%= comment.text%> </h3>
+        <h3><%= @users.find(comment.user_id).name%>: <%= comment.text%> </h3>
       <% end%>
     </div>
   <div>
