@@ -1,1 +1,19 @@
 <h1>Here are the details of the selected user</h1>
+<div>
+  <img class='profile-img' alt='Profile'/>
+  <div>
+    <h1 class='username'><%= @user.name%> </h1>
+    <p>Number of posts: <%= @user.post_counter%></p>
+  </div>
+</div>
+<h3><%= @user.bio%></h3>
+<% @user.posts.limit(3).each_with_index do |post, index| %>
+  <div class='post-info'>
+    <h2><%= post.title%> </h2>
+    <h3><%= post.text%></h3>
+    <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
+  <div>
+  <% if index > 2%>
+    <button type='button'>See all posts</button>
+  <%end%>
+<%end %>
