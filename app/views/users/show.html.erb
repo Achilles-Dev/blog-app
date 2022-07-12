@@ -7,7 +7,7 @@
   </div>
 </div>
 <h3><%= @user.bio%></h3>
-<% @user.posts.limit(3).each_with_index do |post, index| %>
+<% @user.last_three_posts.each_with_index do |post, index| %>
   <div class='post-info'>
     <h2><%= post.title%> </h2>
     <h3><%= post.text%></h3>
