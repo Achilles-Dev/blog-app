@@ -1,1 +1,5 @@
 <h1>Here is a list all users</h1>
+<% @users.each do |user| %>
+  <img alt='Profile'/>
+  <h1><%= user.name%> </h1>
+<%end %>
