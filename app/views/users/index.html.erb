@@ -1,8 +1,12 @@
 <h1>Here is a list all users</h1>
-<% @users.each do |user| %>
-  <div class='user-info'>
-    <img class='profile-img' alt='Profile'/>
-    <h1 class='username'><%= user.name%> </h1>
-    <p>Number of posts: <%= user.post_counter%></p>
-  <div>
-<%end %>
+<div class='user-info'>
+  <% @users.each do |user| %>
+    <div>
+      <img class='profile-img' alt='Profile'/>
+      <div class='content'>
+        <h1 class='username'><%= user.name%> </h1>
+        <p>Number of posts: <%= user.post_counter%></p>
+      </div>
+    </div>
+  <%end %>
+<div>
