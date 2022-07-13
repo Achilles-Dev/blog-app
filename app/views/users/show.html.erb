@@ -10,7 +10,7 @@
 <div class='post-info'>
   <% @user.last_three_posts.each do |post| %>
     <div>
-      <h2><%= link_to post.title, user_post_path(post.user, post)%> </h2>
+      <h2><%= link_to post.title, [post.user, post] %> </h2>
       <h3><%= post.text%></h3>
       <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
     </div>

@@ -9,13 +9,13 @@
 <div class='post-info'>
   <% @user_posts.each do |post| %>
     <div class='post-with-comments'>
-      <h2><%= link_to post.title, user_post_path(post.user, post)%> </h2>
+      <h2><%= link_to post.title, [post.user, post]%> </h2>
       <h3><%= post.text%></h3>
       <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
     </div>
     <div class='comments'>
       <% post.last_five_comments.each do |comment| %>
-        <h3><%= @users.find(comment.user_id).name%>: <%= comment.text%> </h3>
+        <h3><%= comment.user.name%>: <%= comment.text%> </h3>
       <% end%>
     </div>
   <%end %>
