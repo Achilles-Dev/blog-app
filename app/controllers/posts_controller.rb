@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         if post.save
           post.counter_updater
           flash[:success] = 'Post saved successfully'
-          redirect_to [post.user, post] # "/users/#{@id}/posts"
+          redirect_to user_posts_path
         else
           flash.now[:error] = 'Error: Post could not be saved'
           render :new, locals: { post: }
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @user_post = Post.find_by(user_id: params[:user_id], id: params[:id])
-    @id = current_user.id
+    @user_post = Post.find(params[:id])
+    @user_id = current_user.id
   end
 end

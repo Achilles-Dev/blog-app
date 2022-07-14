@@ -1,11 +1,6 @@
-<%= form_with model: @comment, url: "/users/#{user_id}/posts/#{post_id}/comments" do |form| %>
-  <h3>
-    <span>
-    <%= form.label :text, 'Comment:' %>
-    </span>
-  </h3>
-  <div >
-    <%= form.text_field :text, placeholder: 'Add your comment...' %>
+<%= bootstrap_form_with(model: @comment, url: user_post_comments_path(post_id: params[:id])) do |form| %>
+  <div>
+    <%= form.text_field :text, placeholder: 'Add your comment...', label: 'Comment' %>
   </div>
-  <h3><%= form.submit 'Add Comment', class: 'submit-button' %></h3>
+  <%= form.submit 'Add Comment', class: 'submit-button', class: 'btn btn-primary text-white mb-3' %>
 <% end %>
