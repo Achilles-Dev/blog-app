@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    comment = Comment.new(text: params[:text], user: current_user, post:)
+    comment = post.comments.new(comment_params.merge(user: current_user))
     respond_to do |format|
       format.html do
         if comment.save
@@ -21,5 +21,11 @@ class CommentsController < ApplicationController
         end
       end
     end
+  end
+
+  private
+
+  def comment_params
+    params.permit(:text)
   end
 end

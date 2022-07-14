@@ -14,7 +14,7 @@ class LikesController < ApplicationController
       format.html do
         if like.save
           like.counter_updater
-          flash[:notice] = 'Liked'
+          flash[:success] = 'Liked'
           redirect_to "/users/#{user.id}/posts/#{post.id}"
         else
           flash.now[:error] = 'Error: Like could not be saved'

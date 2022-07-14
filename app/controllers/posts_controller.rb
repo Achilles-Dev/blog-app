@@ -1,21 +1,18 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
+    @user = User.includes(:posts).find(params[:user_id])
     @user_posts = @user.posts
   end
 
   def new
-    @id = current_user.id
-    @post = Post.new
+    post = Post.new
     respond_to do |format|
-      format.html { render :new, locals: { post: @post } }
+      format.html { render :new, locals: { post: } }
     end
   end
 
   def create
-    @id = current_user.id
-    post = Post.new(title: params[:title], text: params[:text], user: current_user, comments_counter: 0,
-                    likes_counter: 0)
+    post = current_user.posts.new(post_params.merge(comments_counter: 0, likes_counter: 0))
     respond_to do |format|
       format.html do
         if post.save
@@ -31,8 +28,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    puts params
-    @user_post = Post.find(params[:id])
+    @user_post = Post.includes(:comments).find(params[:id])
     @user_id = current_user.id
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end
