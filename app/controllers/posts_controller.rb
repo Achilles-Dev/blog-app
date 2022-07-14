@@ -32,5 +32,6 @@ class PostsController < ApplicationController
 
   def show
     @user_post = Post.find_by(user_id: params[:user_id], id: params[:id])
+    @id = current_user.id
   end
 end

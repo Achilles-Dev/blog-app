@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def create
+    @id = current_user.id
     post = Post.find(params[:post_id])
     comment = Comment.new(text: params[:text], user: current_user, post:)
     respond_to do |format|
@@ -10,7 +11,7 @@ class CommentsController < ApplicationController
         else
           flash.now[:error] = 'Error: Comment could not be saved'
         end
-        redirect_to "/users/#{params[:user_id]}/posts/#{params[:post_id]}"
+        redirect_to "/users/#{@id}/posts/#{params[:post_id]}"
       end
     end
   end

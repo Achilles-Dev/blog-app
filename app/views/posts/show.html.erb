@@ -8,6 +8,7 @@
 </div>
 <div class='single-post-comments'>
   <% @user_post.comments.each do |comment| %>
-    <h3><%= comment.user.name%>: <%= comment.text%> </h3>
+    <h3><%= comment.text%> </h3>
   <% end%>
 </div>
+<%= render "comments/form", user_id: @id, post_id: @user_post.id %>
