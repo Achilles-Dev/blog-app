@@ -1,14 +1,22 @@
 <h1>Add New Post</h1>
 <div class='post-form'>
-  <%= form_with model: @post do |form| %>
-    <div>
-      <%= form.label :title %>
-      <%= form.text_field :title%>
+  <%= form_with model: @post, url: "/users/#{@id}/posts" do |form| %>
+    <h3>
+      <span>
+      <%= form.label :title, 'Title:' %>
+      </span>
+    </h3>
+    <div >
+      <%= form.text_field :title, placeholder: 'Enter post' %>
     </div>
+    <h3>
+      <span>
+      <%= form.label :text, 'Content:' %>
+      </span>
+    </h3>
     <div>
-      <%= form.label :text %>
-      <%= form.text_area :text, size: "40x5"%>
+      <%= form.text_area :text, size: "20x5", placeholder: 'Add text...' %>
     </div>
-    <%= form.submit 'Add Post' %>
+    <h3><%= form.submit 'Add Post', class: 'submit-button' %></h3>
   <% end %>
 </div>
