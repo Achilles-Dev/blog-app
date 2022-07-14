@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         if post.save
           post.counter_updater
           flash[:success] = 'Post saved successfully'
-          redirect_to "/users/#{@id}/posts"
+          redirect_to [post.user, post] # "/users/#{@id}/posts"
         else
           flash.now[:error] = 'Error: Post could not be saved'
           render :new, locals: { post: }
