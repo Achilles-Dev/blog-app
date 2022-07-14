@@ -1,21 +1,21 @@
 <h1>Here are the details of the selected user</h1>
 <div class='user-top'>
   <img class='profile-img' alt='Profile'/>
-  <div>
-    <h1 class='username'><%= link_to @user.name, controller: 'posts', user_id: @user %> </h1>
+  <div class='p-2'>
+    <h2 class='username'><%= link_to @user.name, controller: 'posts', user_id: @user %> </h2>
     <p>Number of posts: <%= @user.post_counter%></p>
   </div>
 </div>
-<h3 class='user-bio'><%= @user.bio%></h3>
+<h4 class='user-bio'><%= @user.bio%></h4>
 <div class='post-info'>
   <% @user.last_three_posts.each do |post| %>
-    <div>
-      <h2><%= link_to post.title, [post.user, post] %> </h2>
-      <h3><%= post.text%></h3>
+    <div class='p-3'>
+      <h3><%= link_to post.title, [post.user, post] %> </h3>
+      <h4><%= post.text%></h4>
       <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
     </div>
   <%end %>
-  <% if @user.last_three_posts.length > 3%>
+  <% if @user.posts.length > 3%>
     <div class='button'> 
       <button type='button'>See all posts</button>
     </div>

@@ -1,0 +1,7 @@
+<h1>Add New Post</h1>
+<%= bootstrap_form_with(model: @post, url: user_posts_path) do |form| %>
+    <%= form.text_field :title, placeholder: 'Enter post' %>
+    <%= form.text_area :text, size: "20x5", placeholder: 'Add text...' %>
+  <%= form.submit 'Add Post' %>
+  <%= @post.user %>
+<% end %>

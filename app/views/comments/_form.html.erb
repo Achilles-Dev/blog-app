@@ -1,0 +1,6 @@
+<%= bootstrap_form_with(model: @comment, url: user_post_comments_path(post_id: params[:id])) do |form| %>
+  <div>
+    <%= form.text_field :text, placeholder: 'Add your comment...', label: 'Comment' %>
+  </div>
+  <%= form.submit 'Add Comment', class: 'submit-button', class: 'btn btn-primary text-white mb-3' %>
+<% end %>
