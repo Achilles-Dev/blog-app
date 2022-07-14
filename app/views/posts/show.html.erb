@@ -5,6 +5,7 @@
     <p>Comments: <%= @user_post.comments_counter%>, Likes: <%= @user_post.likes_counter%></p>
   </div>
   <h3><%= @user_post.text%></h3>
+  <%= render "likes/form", user_id: @id, post_id: @user_post.id %>
 </div>
 <div class='single-post-comments'>
   <% @user_post.comments.each do |comment| %>
