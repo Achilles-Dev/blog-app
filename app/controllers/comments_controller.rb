@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
         if comment.save
           comment.counter_updater
           flash[:success] = 'New comment added'
-          redirect_to user_post_comments_path
+          redirect_to "/users/#{params[:user_id]}/posts/#{post.id}"
         else
           flash.now[:error] = 'Error: Comment could not be saved'
           render :new, locals: { comment: }
