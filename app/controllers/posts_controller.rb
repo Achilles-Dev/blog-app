@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    puts params
     @user_post = Post.find(params[:id])
     @user_id = current_user.id
   end
