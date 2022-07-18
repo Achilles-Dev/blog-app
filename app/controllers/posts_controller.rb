@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @user_post = Post.includes(:comments).find(params[:id])
+    @user_post = Post.includes(comments: [:user]).find(params[:id])
     @user_id = current_user.id
   end
 
