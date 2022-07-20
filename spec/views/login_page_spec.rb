@@ -1,19 +1,16 @@
 require 'rails_helper'
 
-RSpec.feature 'Login', type: :feature do
+RSpec.describe 'Login', type: :feature do
   before :each do
     User.create(name: 'Testing', post_counter: 0, email: 'user@example.com', password: 'password',
                 confirmed_at: '2022-07-19 22:25:13.71382')
   end
 
-  it 'can enter a name and receive a greeting' do
+  it 'can see the log in button, user[email] and user[password]' do
     visit user_session_path
     expect(page).to have_content 'Log in'
-  end
-
-  it 'user can see inputs and button' do
-    visit user_session_path
-    expect(page).to have_current_path(user_session_path)
+    expect(page).to have_field 'user[email]'
+    expect(page).to have_field 'user[password]'
   end
 
   it 'click the login button with no inputs' do
