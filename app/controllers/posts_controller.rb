@@ -5,10 +5,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    post = Post.new
-    respond_to do |format|
-      format.html { render :new, locals: { post: } }
-    end
+    @post = Post.new
   end
 
   def create
@@ -21,7 +18,7 @@ class PostsController < ApplicationController
           redirect_to user_posts_path
         else
           flash.now[:error] = 'Error: Post could not be saved'
-          render :new, locals: { post: }
+          render :new
         end
       end
     end

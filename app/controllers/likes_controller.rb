@@ -1,9 +1,6 @@
 class LikesController < ApplicationController
   def new
-    like = Like.new
-    respond_to do |format|
-      format.html { render :new, locals: { like: } }
-    end
+    @like = Like.new
   end
 
   def create
@@ -18,7 +15,7 @@ class LikesController < ApplicationController
           redirect_to "/users/#{user.id}/posts/#{post.id}"
         else
           flash.now[:error] = 'Error: Like could not be saved'
-          render :new, locals: { like: }
+          render :new
         end
       end
     end

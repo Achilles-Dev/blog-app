@@ -1,9 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    comment = Comment.new
-    respond_to do |format|
-      format.html { render :new, locals: { comment: } }
-    end
+    @comment = Comment.new
   end
 
   def create
@@ -17,7 +14,7 @@ class CommentsController < ApplicationController
           redirect_to "/users/#{params[:user_id]}/posts/#{post.id}"
         else
           flash.now[:error] = 'Error: Comment could not be saved'
-          render :new, locals: { comment: }
+          render :new
         end
       end
     end
