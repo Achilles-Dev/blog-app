@@ -2,9 +2,10 @@
 <div class='user-top'>
   <img class='profile-img' alt='Profile'/>
   <div class='p-2'>
-    <h2 class='username'><%= link_to @user.name, controller: 'posts', user_id: @user %> </h2>
+    <h2 class='username'><%= @user.name %> </h2>
     <p>Number of posts: <%= @user.post_counter%></p>
   </div>
+  <button>
 </div>
 <h4 class='user-bio'><%= @user.bio%></h4>
 <div class='post-info'>
@@ -17,7 +18,7 @@
   <%end %>
   <% if @user.posts.length > 3%>
     <div class='button'> 
-      <button type='button'>See all posts</button>
+      <button type='button'><%= link_to 'See all posts', controller: 'posts', user_id: @user %></button>
     </div>
   <%end%>
 </div>

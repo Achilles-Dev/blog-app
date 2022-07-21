@@ -9,7 +9,6 @@ RSpec.describe 'PostsShowPages', type: :system do
     @user = User.create!(name: 'Sam', bio: 'Full stack developer', email: 'sam@gmail.com',
                          password: 'sam22021', post_counter: 0, confirmed_at: Time.now)
 
-    # login_as @user
     @user2 = User.create!(name: 'Solomon', bio: 'Full stack developer', post_counter: 0,
                           email: 'user2@example.com', password: 'password2', confirmed_at: Time.now)
     (1..6).each do |n|
@@ -35,16 +34,16 @@ RSpec.describe 'PostsShowPages', type: :system do
     it "should display a posts's body" do
       expect(page).to have_content(@post.text)
     end
-    it "should display a post's comments count" do
+    it 'should display number of comments for a post' do
       expect(page).to have_content("Comments: #{@post.comments_counter}")
     end
-    it "should display a post's likes count" do
+    it 'should display number of likes for a post' do
       expect(page).to have_content("Likes: #{@post.likes_counter}")
     end
-    it 'should display username of each commentor on a post' do
+    it 'should display username of each commenter on a post' do
       expect(page).to have_content("#{@user.name}:")
     end
-    it 'should display username of each commentor on a post' do
+    it 'should display comment for each commenter' do
       comment = @post.comments.where(user_id: @user).first
       expect(page).to have_content(comment.text)
     end

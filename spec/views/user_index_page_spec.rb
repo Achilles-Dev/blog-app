@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User index Page', type: :feature do
+RSpec.describe 'User Index Page', type: :feature do
   before :each do
     @user1 = User.create(name: 'Oybek', post_counter: 0, email: 'user@example.com', password: 'password',
                          confirmed_at: '2022-07-19 22:25:13.71382')

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User index Page', type: :feature do
+RSpec.describe 'User Show Page', type: :feature do
   before :each do
     @user1 = User.create!(name: 'Oybek', bio: 'Programmer', post_counter: 0, email: 'user@example.com',
                           password: 'password', confirmed_at: '2022-07-19 22:25:13.71382')
@@ -42,7 +42,7 @@ RSpec.describe 'User index Page', type: :feature do
 
   it "can see a link that lets me view all of a user's posts." do
     visit user_path(@user1)
-    expect(page).to have_link('Oybek')
+    expect(page).to have_link('See all posts')
   end
 
   it "click on user's post to redirect to post's show page" do
@@ -51,9 +51,9 @@ RSpec.describe 'User index Page', type: :feature do
     expect(current_path).to eq user_post_path(@user1, @post4)
   end
 
-  it "click on Oykek to redirect to user's post's index page" do
+  it "click on See all posts to redirect to user's post's index page" do
     visit user_path(@user1)
-    click_link 'Oybek'
+    click_link 'See all posts'
     expect(current_path).to eq user_posts_path(@user1)
   end
 end
