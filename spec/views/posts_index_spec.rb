@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'posts/index.html.erb', type: :feature do
   before(:each) do
     visit new_user_session_path
-    @user = User.new(name: 'Sam', bio: 'Full stack developer', email: 'sam@gmail.com', password: 'sam22021',                 
+    @user = User.new(name: 'Sam', bio: 'Full stack developer', email: 'sam@gmail.com', password: 'sam22021',
                      post_counter: 1, confirmed_at: Time.now)
     @user.save
     5.times do
