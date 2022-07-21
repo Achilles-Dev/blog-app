@@ -37,12 +37,18 @@ RSpec.describe 'User index Page', type: :feature do
 
   it "can see the user's first three posts" do
     visit user_path(@user1)
-    expect(@user1.last_three_posts.length).to eq(3)
+    expect(@user1.recent_posts.length).to eq(3)
   end
 
   it "can see a link that lets me view all of a user's posts." do
     visit user_path(@user1)
     expect(page).to have_link('Oybek')
+  end
+
+  it "click on user's post to redirect to post's show page" do
+    visit user_path(@user1)
+    click_link 'Post 4'
+    expect(current_path).to eq user_post_path(@user1, @post4)
   end
 
   it "click on Oykek to redirect to user's post's index page" do

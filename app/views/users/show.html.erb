@@ -8,7 +8,7 @@
 </div>
 <h4 class='user-bio'><%= @user.bio%></h4>
 <div class='post-info'>
-  <% @user.last_three_posts.each do |post| %>
+  <% @user.recent_posts.each do |post| %>
     <div class='p-3'>
       <h3><%= link_to post.title, [post.user, post] %> </h3>
       <h4><%= post.text%></h4>

@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 
   def show
     @user_post = Post.includes(comments: [:user]).find(params[:id])
-    @user_id = current_user.id
+    @user_id = params[:user_id]
   end
 
   private
