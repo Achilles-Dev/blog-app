@@ -2,8 +2,8 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  after_save :update_comments_count
-  after_destroy :update_comments_count
+  after_save :counter_updater
+  after_destroy :counter_updater
 
   private
 
