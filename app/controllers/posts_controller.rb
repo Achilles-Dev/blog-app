@@ -1,14 +1,11 @@
 class PostsController < ApplicationController
   def index
     @user = User.includes(:posts).find(params[:user_id])
-    @user_posts = @user.posts
+    @user_posts = @user.posts.includes(comments: [:user])
   end
 
   def new
-    post = Post.new
-    respond_to do |format|
-      format.html { render :new, locals: { post: } }
-    end
+    @post = Post.new
   end
 
   def create
@@ -21,15 +18,15 @@ class PostsController < ApplicationController
           redirect_to user_posts_path
         else
           flash.now[:error] = 'Error: Post could not be saved'
-          render :new, locals: { post: }
+          render :new
         end
       end
     end
   end
 
   def show
-    @user_post = Post.includes(:comments).find(params[:id])
-    @user_id = current_user.id
+    @user_post = Post.includes(comments: [:user]).find(params[:id])
+    @user_id = params[:user_id]
   end
 
   private

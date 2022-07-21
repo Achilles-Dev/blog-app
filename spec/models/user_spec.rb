@@ -22,14 +22,14 @@ RSpec.describe User, type: :model do
 
   it 'should return zero user posts' do
     expected_value = 0
-    expect(subject.last_three_posts.count).to eq(expected_value)
+    expect(subject.recent_posts.count).to eq(expected_value)
   end
 
   it 'should return 1 user posts' do
     post1 = Post.new(title: 'Solo', text: 'This is my first post')
     subject.posts.push(post1)
     expected_value = 1
-    expect(subject.last_three_posts.length).to eq(expected_value)
+    expect(subject.recent_posts.length).to eq(expected_value)
   end
 
   it 'should return 3 user posts' do
@@ -42,6 +42,6 @@ RSpec.describe User, type: :model do
     subject.posts.push(post3)
     subject.posts.push(post4)
     expected_value = 3
-    expect(subject.last_three_posts.length).to eq(expected_value)
+    expect(subject.recent_posts.length).to eq(expected_value)
   end
 end
