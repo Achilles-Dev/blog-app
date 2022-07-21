@@ -5,6 +5,9 @@
     <p>Comments: <%= @user_post.comments_counter%>, Likes: <%= @user_post.likes_counter%></p>
   </div>
   <%= render "likes/form", user_id: @user_id, post_id: @user_post.id %>
+  <% if can? :destroy, @user_post %>
+    <%= button_to 'Delete Post', user_post_path(params[:user_id], @user_post), method: :delete, class: "btn text-dark btn-danger" %>
+  <% end %> 
   <h4 class='mt-3'><%= @user_post.text%></h4>
 </div>
 <div class='single-post-comments p-3'>
@@ -12,9 +15,6 @@
     <h5><%= comment.user.name%>: <%= comment.text%> </h5>
   <% end%>
 </div>
-<% if can? :destroy, @post %>
-  <%= button_to 'Delete Post', "/users/#{params[:user_id]}/posts/#{@post.id}", method: :delete, class: "btn text-dark btn-danger" %>
-<% end %> 
 <div class='mt-3'>
   <%= render "comments/form", user_id: @user_id, post_id: @user_post.id %>
 <div>
