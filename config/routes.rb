@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  scope :api, defaults: { format: :json } do
+  scope :api do
     devise_for :users, controllers: { sessions: :sessions, registrations: :registrations}
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "users#index"
+  # root "users#index"
+  devise_scope :user do
+    authenticated :user do
+      root to: 'users#index'
+    end
+    unauthenticated :user do
+      root to: 'devise/registrations#new', as: :unauthenticated_root
+    end
+  end
 
   resources :users, only: [:index, :show] do
     resources :posts, only: [:index, :create, :new, :show, :destroy] do
