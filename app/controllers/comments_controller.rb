@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html do
         if comment.save
-          comment.counter_updater
           flash[:success] = 'New comment added'
           redirect_to "/users/#{params[:user_id]}/posts/#{post.id}"
         else
@@ -18,6 +17,13 @@ class CommentsController < ApplicationController
         end
       end
     end
+  end
+
+  def destroy
+    @comment = Comment.find_by(post_id: params[:id])
+    @comment.destroy
+    flash[:success] = 'Comment successfully deleted'
+    redirect_to "/users/#{params[:user_id]}/posts/#{params[:id]}"
   end
 
   private
