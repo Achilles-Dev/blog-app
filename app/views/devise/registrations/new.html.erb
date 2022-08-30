@@ -1,9 +1,9 @@
 <h2 class="text-center">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, method: :post, url: user_registration_path) do |f| %>
 <div class="d-flex flex-column align-items-center">
   <%= render "devise/shared/error_messages", resource: resource %>
- <div class= "d-flex flex-column align-items-center w-75 mb-3"> 
+  <div class= "d-flex flex-column align-items-center w-75 mb-3"> 
     <%= f.text_field :name ,class: "form-control w-75 mb-4", placeholder: "Name" %>
 
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control w-75 mb-4", placeholder: "Email" %>
@@ -16,10 +16,9 @@
     <%= f.hidden_field :post_counter , value: 0 %>  
 
     <%= f.submit "Sign up", class: "form-control w-75 btn btn-primary"%>
-    </div>
-<% end %>
-
+  </div>
 <%= render "devise/shared/links" %>
 
 </div>
+<% end %>
 
