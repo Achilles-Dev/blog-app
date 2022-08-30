@@ -1,9 +1,9 @@
 <h2 class="text-center">Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
 <div class="d-flex flex-column align-items-center">
+<%= render "devise/shared/error_messages", resource: resource %>
   <div class= "d-flex flex-column align-items-center w-75 mb-3">
-   
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control w-75 mb-4", placeholder: "Email" %>
     <%= f.password_field :password, autocomplete: "current-password", class: "form-control w-75", placeholder: "Password" %>
   <% if devise_mapping.rememberable? %>
